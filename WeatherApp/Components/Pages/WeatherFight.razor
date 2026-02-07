@@ -1,0 +1,54 @@
+﻿@page "/weatherfight"
+@using WeatherApp.Components.Pages
+@rendermode InteractiveServer
+
+<PageTitle>WeatherApp - WeatherFight</PageTitle>
+
+<div class="hero-wrapper" style="@HeroBackgroundStyle">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="content-container">
+        <h1 class="app-title">Weather<span class="highlight">Fight</span></h1>
+
+        <div class="search-section battle-search">
+            <div class="glass-search-box">
+                <input type="text" @bind="CityNameA" @bind:event="oninput" placeholder="City One..." class="glass-input" />
+                <div class="vs-divider">VS</div>
+                <input type="text" @bind="CityNameB" @bind:event="oninput" placeholder="City Two..." class="glass-input" />
+                <button @onclick="StartFight" class="glass-button" disabled="@IsSearching">
+                    @if (IsSearching)
+                    {
+                        <span class="spinner-mini"></span>
+                    }
+                    else
+                    {
+                        <span>Fight</span>
+                    }
+                </button>
+            </div>
+        </div>
+
+        @if (CurrentState == FightState.Error)
+        {
+            <div class="glass-alert error">
+                Could not compare these locations. Please try again.
+            </div>
+        }
+
+        <div class="battle-arena">
+            @if (CurrentState == FightState.Success)
+            {
+                <div class="fighter @GetFighterClass(ScoreA, ScoreB)">
+                    <div class="score-badge">@ScoreA.ToString("F1") PTS</div>
+                    <WeatherCard Weather="ResultA" />
+                </div>
+
+                <div class="fighter @GetFighterClass(ScoreB, ScoreA)">
+                    <div class="score-badge">@ScoreB.ToString("F1") PTS</div>
+                    <WeatherCard Weather="ResultB" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

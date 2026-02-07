@@ -1,0 +1,54 @@
+﻿@page "/weathermap"
+@using WeatherApp.Components.Pages
+@rendermode InteractiveServer
+
+<PageTitle>WeatherApp - WeatherMap</PageTitle>
+
+<div class="hero-wrapper" style="@HeroBackgroundStyle">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="content-container">
+        <h1 class="app-title">Weather<span class="highlight">Map</span></h1>
+
+        <div class="search-section">
+            <form @onsubmit="SearchLocation" class="glass-search-box">
+                <input type="text"
+                       @bind="CityName"
+                       @bind:event="oninput"
+                       placeholder="Find location (e.g. Paris)..."
+                       class="glass-input" />
+                <button type="submit" class="glass-button">
+                    @if (CurrentState == MapState.Searching)
+                    {
+                        <span class="spinner-mini"></span>
+                    }
+                    else
+                    {
+                        <span>Go</span>
+                    }
+                </button>
+            </form>
+        </div>
+
+        @if (CurrentState == MapState.Error)
+        {
+            <div class="glass-alert error">
+                Location or weather not found. Please try again.
+            </div>
+        }
+
+        <div class="dashboard-grid">
+            <div class="map-card-wrapper">
+                <div id="map-container"></div>
+            </div>
+
+            @if (WeatherResult != null)
+            {
+                <div class="weather-panel-wrapper">
+                    <WeatherCard Weather="WeatherResult" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

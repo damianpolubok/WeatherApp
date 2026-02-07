@@ -1,0 +1,56 @@
+﻿@page "/"
+@using WeatherApp.Components.Pages
+@rendermode InteractiveServer
+
+<PageTitle>WeatherApp - Search</PageTitle>
+
+<div class="hero-wrapper" style="@HeroBackgroundStyle">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="content-container">
+        <h1 class="app-title">Weather<span class="highlight">App</span></h1>
+
+        <div class="search-section">
+            <form @onsubmit="SearchWeather" class="glass-search-box">
+                <input type="text"
+                       @bind="CityName"
+                       @bind:event="oninput"
+                       placeholder="Enter city name (e.g. London)..."
+                       class="glass-input" />
+                <button type="submit" class="glass-button">
+                    @if (CurrentState == SearchState.Loading)
+                    {
+                        <span class="spinner-mini"></span>
+                    }
+                    else
+                    {
+                        <span>Search</span>
+                    }
+                </button>
+            </form>
+        </div>
+
+        <div class="results-section">
+            @switch (CurrentState)
+            {
+                case SearchState.Error:
+                    <div class="glass-alert error">
+                        City not found. Please try another name.
+                    </div>
+                    break;
+
+                case SearchState.Success:
+                    <div class="result-animator">
+                        <WeatherCard Weather="SearchResult" />
+                    </div>
+                    break;
+
+                case SearchState.Loading:
+                case SearchState.Idle:
+                default:
+                    break;
+            }
+        </div>
+    </div>
+</div>

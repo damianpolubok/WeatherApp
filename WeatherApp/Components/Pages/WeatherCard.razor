@@ -1,0 +1,35 @@
+﻿@using WeatherApp.Models
+
+<div class="weather-card-container" style="@BackgroundStyle">
+    <div class="card-header">
+        <div class="city-info">
+            <h2 class="city-name">@Weather.CityName</h2>
+            <span class="date-badge">Now</span>
+        </div>
+        <img class="weather-icon" src="@Weather.IconUrl" alt="@Weather.Description" />
+    </div>
+
+    <div class="card-body">
+        <div class="main-temp">
+            @Weather.Temperature
+        </div>
+        <div class="weather-desc">
+            @Weather.Description
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-box">
+                <span class="detail-label">Feels Like</span>
+                <span class="detail-value">@Weather.FeelsLike</span>
+            </div>
+            <div class="detail-box">
+                <span class="detail-label">Humidity</span>
+                <span class="detail-value">@Weather.Humidity</span>
+            </div>
+            <div class="detail-box">
+                <span class="detail-label">Wind</span>
+                <span class="detail-value">@Weather.WindSpeed</span>
+            </div>
+        </div>
+    </div>
+</div>

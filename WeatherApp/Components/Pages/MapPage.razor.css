@@ -1,0 +1,262 @@
+﻿.hero-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(20,20,50,0.5) 100%);
+    backdrop-filter: blur(2px);
+    z-index: 0;
+}
+
+.content-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.app-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.highlight {
+    color: #4facfe;
+}
+
+.search-section {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.glass-search-box {
+    display: flex;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 6px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .glass-search-box:focus-within {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 15px 40px rgba(79, 172, 254, 0.2);
+        border-color: rgba(79, 172, 254, 0.6);
+    }
+
+.glass-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    color: white;
+    outline: none;
+}
+
+    .glass-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+.glass-button {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border: none;
+    border-radius: 40px;
+    padding: 0 32px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .glass-button:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.1);
+        box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+    }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 24px;
+    width: 100%;
+    height: 550px;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+.map-card-wrapper {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    z-index: 1;
+}
+
+.weather-panel-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+::deep .weather-card {
+    width: 100%;
+    margin: 0;
+}
+
+.glass-alert {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: rgba(255, 50, 50, 0.2);
+    border: 1px solid rgba(255, 50, 50, 0.4);
+    border-radius: 12px;
+    color: #ffdce0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: shake 0.4s ease-in-out;
+}
+
+.spinner-mini {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 450px auto;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .content-container {
+        justify-content: flex-start;
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-title {
+        font-size: 2.2rem;
+    }
+
+    .dashboard-grid {
+        grid-template-rows: 350px auto;
+        gap: 16px;
+    }
+
+    .glass-search-box {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .glass-input {
+        text-align: center;
+        padding: 8px;
+    }
+
+    .glass-button {
+        width: 100%;
+        margin-top: 8px;
+        padding: 12px;
+    }
+}
